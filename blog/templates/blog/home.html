@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Blog Home!</title>
+</head>
+<body style="font-family: Helvetica, Arial, sans-serif">
+    <h1>
+        Welcome to Blog Home!
+    </h1>  
+    <br> 
+    {% for post in posts %} 
+        <h2>{{ post.title }}</h2>
+        <h4><p>
+            <strong>By {{ post.author }} </strong>
+             on <em>{{ post.date_posted }}</em>
+        </p></h4>
+        <h4><p>{{ post.content }}</p></h4>
+        <br>
+    {% endfor %}
+    
+</body>
+</html>
