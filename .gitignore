@@ -3,3 +3,4 @@ djangoproject/__pycache__/
 djangoproject/__init__.py
 blog/__init__.py
 blog/__pycache__/
+*.pyc
