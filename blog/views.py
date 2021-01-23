@@ -13,6 +13,7 @@ def home(request):
     return render(request, 'blog/home.html', context)
 
 
+# @login_required
 class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
