@@ -21,7 +21,8 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
+    # status = forms.CharField(max_length=50)
 
     class Meta:
         model = Profile
-        fields = ['image']
+        fields = ['about_me', 'image']
