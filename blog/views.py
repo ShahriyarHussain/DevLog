@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Post
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView, CreateView
 
 
-@login_required
+# @login_required
 def home(request):
     context = {
         'posts': Post.objects.all()
@@ -20,9 +20,14 @@ class PostListView(ListView):
     context_object_name = 'posts'
     ordering = ['-date_posted']
 
-# continue from here
-# class PostDetailView(ListView):
-#     model = Post
+
+class PostDetailView(DetailView):
+    model = Post
+
+
+class PostCreateView(CreateView):
+    model = Post
+    fields = ['title', 'content']
 
 
 def about(request):
