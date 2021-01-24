@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 {% block content %}
     <br> 
-    <article class="media content-section">
+    <article class="media content-section" style="border-radius: 3%;">
         <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
         <div class="media-body">
             <div class="article-metadata">
@@ -10,6 +10,12 @@
             </div>
             <h2 class="article-title">{{ object.title }}</h2>
             <p class="article-content" style="color: rgb(88, 88, 88);">{{ object.content }}</p>
+            {% if object.author == user %}
+                <a class="btn btn-outline-primary btn-sm" href="{% url 'post-update' object.id %}">Edit Post</a>
+                <a class="btn btn-outline-danger btn-sm" href="{% url 'post-delete' object.id %}">Delete Post</a>
+            {% endif %}
+            
         </div>
+        
     </article>
 {% endblock content %}
