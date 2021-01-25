@@ -50,7 +50,7 @@
       </header>
       <main role="main" class="container">
         <div class="row">
-          <div class="col-md-8">
+          <div class="col-md-8" style="margin-left: 15%;">
              {% if messages %}
                 {% for message in messages %}
                   <div class="alert alert-{{ message.tags }}">
@@ -61,7 +61,7 @@
             {% block content %}{% endblock %}
           </div>
           {% if user.is_authenticated %}
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
               <div class="content-section" style="border-radius: 5%;background-color: #f7f7f7;">
                 <h3>Catch Up!</h3>
                 <p class='text-muted'>Get updated with the latest notifications.
@@ -73,7 +73,7 @@
                   </ul>
                 </p>
               </div>
-            </div>
+            </div> -->
             {% endif %}
         </div>
       </main>

@@ -1,12 +1,15 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-    <br> 
+    <h3 class="mb-3" style="text-align: center;">
+        Posts By {{ view.kwargs.username }}: {{ page_obj.paginator.count }} Post(s)
+    </h3>
     {% for post in posts %} 
         <article class="media content-section" style="border-radius: 7px;">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
             <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                <!-- <a class="mr-2" href="{% url 'profile'%}">{{ post.author }}</a> -->
+                <span class="mr-2" >{{ post.author }}</span>
                 <small class="text-muted"> {{ post.date_posted|date:"l, F d, Y" }}</small>
             </div>
             <h3><a class="article-title" href="{% url 'post-detail' post.id %}"">{{ post.title }}</a></h3>
@@ -36,8 +39,4 @@
 
     {% endif %}
     </div>
-    <br>
-    <h4 class="mb-3" style="text-align: center;">
-        Posts So far: {{ page_obj.paginator.count }}
-    </h4>
 {% endblock content %}
