@@ -3,7 +3,10 @@ from django.http import HttpResponse
 from .models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import (ListView,
+                                  DetailView, CreateView,
+                                  UpdateView, DeleteView
+                                  )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 
@@ -17,7 +20,7 @@ def home(request):
 
 
 # @login_required
-class PostListView(ListView):
+class PostListView(LoginRequiredMixin, ListView):
     model = Post
     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
