@@ -37,7 +37,9 @@
     {% endif %}
     </div>
     <br>
-    <h4 class="mb-3" style="text-align: center;">
-        Posts So far: {{ page_obj.paginator.count }}
-    </h4>
+    {% if page_obj.paginator.count < '7' %}
+        <h4 class="mb-3" style="text-align: center;">
+            Posts So far: {{ page_obj.paginator.count }}
+        </h4>
+    {% endif %}
 {% endblock content %}
