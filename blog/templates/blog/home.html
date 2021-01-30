@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-    <br> 
-    {% for post in posts %} 
+    <br>
+    {% for post in posts %}
         <article class="media content-section" style="border-radius: 7px;">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
             <div class="media-body">
@@ -37,7 +37,9 @@
     {% endif %}
     </div>
     <br>
-    <h4 class="mb-3" style="text-align: center;">
-        Posts So far: {{ page_obj.paginator.count }}
-    </h4>
+    {% if page_obj.paginator.count < '8' %}
+        <h4 class="mb-3" style="text-align: center;">
+            Posts So far: {{ page_obj.paginator.count }}
+        </h4>
+    {% endif %}
 {% endblock content %}
