@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
 from .models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -8,8 +7,6 @@ from django.views.generic import (ListView,
                                   UpdateView, DeleteView
                                   )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib import messages
-
 
 @login_required
 def home(request):
@@ -20,7 +17,7 @@ def home(request):
 
 
 # @login_required
-class PostListView(LoginRequiredMixin, ListView):
+class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
