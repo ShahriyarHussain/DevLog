@@ -1,0 +1,4 @@
+'django_cleanup'
+'django_crispy_forms'
+'pillow'
+'image'
