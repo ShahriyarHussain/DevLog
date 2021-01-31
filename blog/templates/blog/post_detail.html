@@ -7,14 +7,18 @@
             <div class="article-metadata">
                 <a class="mr-2" href="{% url 'user-posts' object.author.username%}">{{ object.author }}</a>
                 <small class="text-muted"> {{ object.date_posted|date:"l, F d, Y" }}</small>
-            </div>
+                {% if object.author == user %} 
+                    <small style="margin-left: 181pt;">
+                        <a class="btn btn-outline-primary btn-sm" href="{% url 'post-update' object.id %}">Edit Post</a>
+                        <a class="btn btn-outline-danger btn-sm" href="{% url 'post-delete' object.id %}">Delete Post</a>
+                    </small>               
+                {% endif %}
+            </div>            
             <h2 class="article-title">{{ object.title }}</h2>
             <p class="article-content" style="color: rgb(88, 88, 88);">{{ object.content }}</p>
-            {% if object.author == user %}
-                <a class="btn btn-outline-primary btn-sm" href="{% url 'post-update' object.id %}">Edit Post</a>
-                <a class="btn btn-outline-danger btn-sm" href="{% url 'post-delete' object.id %}">Delete Post</a>
-            {% endif %}
-            
+            <div class="border-top pt-2 ">
+                <span class="pl-1">Upvote</span> <span class="pl-5">Downvote</span> <span class="pl-5">Comment</span>
+            </div> 
         </div>
         
     </article>

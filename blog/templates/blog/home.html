@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-    <br> 
+    <br>     
     {% for post in posts %} 
         <article class="media content-section" style="border-radius: 7px;">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
@@ -11,7 +11,11 @@
             </div>
             <h3><a class="article-title" href="{% url 'post-detail' post.id %}"">{{ post.title }}</a></h3>
             <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content }}</p>
+            <div class="border-top pt-3 ">
+                <span class="pl-1">Upvote</span> <span class="pl-5">Downvote</span> <span class="pl-5">Comment</span>
             </div>
+            </div>
+            
         </article>
     {% endfor %}
     <div style="text-align: center;">
