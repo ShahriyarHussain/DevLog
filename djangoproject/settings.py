@@ -24,6 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = os.environ.get('SECRET_KEY')
 SECRET_KEY = '945g#yzt+033gk+ij41!um+!wy1xj9q)^cy)f#rx7qil!9mv'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
@@ -124,16 +125,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/therealShihab/djangoproject/static'
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-#     'media',
-# ]
+# STATIC_ROOT = '/home/therealShihab/djangoproject/static'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    'media',
+]
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # MEDIA_ROOT = '/home/therealShihab/djangoproject/static'
-MEDIA_URL = ''
+# MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
