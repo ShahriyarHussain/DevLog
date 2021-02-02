@@ -1,19 +1,20 @@
 {% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <br> 
-    <article class="media content-section" style="border-radius: 3%;">
+    <article class="media content-section mb-4" style="border-radius: 3%;">
         <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
         <div class="media-body">
             <div class="article-metadata">
                 <a class="mr-2" href="{% url 'user-posts' object.author.username%}">{{ object.author }}</a>
                 <small class="text-muted"> {{ object.date_posted|date:"l, F d, Y" }}</small>
                 {% if object.author == user %} 
-                    <small style="margin-left: 172pt;">
-                        <a class="btn btn-outline-primary btn-sm" href="{% url 'post-update' object.id %}">
-                            Edit Post
+                    <small style="margin-left: 180pt;">
+                        <a class="btn btn-primary btn-sm" style="color:whitesmoke;" href="{% url 'post-update' object.id %}">
+                            <i class="fa fa-pencil" aria-hidden="true"></i><span class="pl-1">Edit</span>
                         </a>
-                        <a class="btn btn-outline-danger btn-sm ml-2" href="{% url 'post-delete' object.id %}">
-                            Delete Post
+                        <a class="btn btn-danger btn-sm ml-2" style="color:whitesmoke;" href="{% url 'post-delete' object.id %}">
+                            <i class="fa fa-trash" aria-hidden="true"></i><span class="pl-1">Delete</span>
                         </a>
                     </small>               
                 {% endif %}
@@ -25,15 +26,32 @@
                 <small class="text-muted ml-3">3 Downvotes</small>
                 <small class="text-muted ml-3">4 Comments</small>
             </div> 
-            <div class="border-top pt-3">
+            <div class="border-top pt-3 mb-4">
                 <a class="btn btn-primary btn-sm" style="color:whitesmoke;">
-                    <i class="fa fa-angle-up fa-lg" aria-hidden="true"></i> <span class="pl-.5">Upvote</span>
+                    <i class="fa fa-angle-up fa-lg" aria-hidden="true"></i><span class="pl-1">Upvote</span>
                 </a>
                 <a class="btn btn-warning btn-sm ml-2">
-                    <i class="fa fa-angle-down fa-lg" aria-hidden="true"></i> <span class="pl-.5">Downvote</span>
+                    <i class="fa fa-angle-down fa-lg" aria-hidden="true"></i><span class="pl-1">Downvote</span>
                 </a>                
-            </div> 
-        </div>
-        
+            </div>                         
     </article>
+
+    <div class="content-section pt-1">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4"> Comments </legend>
+                {{ forms|crispy }}  
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-success" type="submit">Post</button>
+            </div>
+        </form>
+        <div class="border-top pt-3 ">
+            <small class="text-muted">
+                <a class="ml-.5" href="{% url 'blog-home' %}"> Go Back</a>
+            </small> 
+        </div>
+    </div>  
+
 {% endblock content %}

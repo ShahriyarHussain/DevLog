@@ -78,5 +78,14 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-def about(request):
-    return render(request, 'blog/about.html', {'title': 'About'})
+# class CommentCreateView(LoginRequiredMixin, CreateView):
+#     model = Post
+#     fields = ['content']
+
+#     def form_valid(self, forms):
+#         form.instance.author = self.request.user
+#         return super().form_valid(forms)
+
+
+# def about(request):
+#     return render(request, 'blog/about.html', {'title': 'About'})
