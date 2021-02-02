@@ -8,16 +8,30 @@
                 <a class="mr-2" href="{% url 'user-posts' object.author.username%}">{{ object.author }}</a>
                 <small class="text-muted"> {{ object.date_posted|date:"l, F d, Y" }}</small>
                 {% if object.author == user %} 
-                    <small style="margin-left: 181pt;">
-                        <a class="btn btn-outline-primary btn-sm" href="{% url 'post-update' object.id %}">Edit Post</a>
-                        <a class="btn btn-outline-danger btn-sm" href="{% url 'post-delete' object.id %}">Delete Post</a>
+                    <small style="margin-left: 172pt;">
+                        <a class="btn btn-outline-primary btn-sm" href="{% url 'post-update' object.id %}">
+                            Edit Post
+                        </a>
+                        <a class="btn btn-outline-danger btn-sm ml-2" href="{% url 'post-delete' object.id %}">
+                            Delete Post
+                        </a>
                     </small>               
                 {% endif %}
             </div>            
             <h2 class="article-title">{{ object.title }}</h2>
             <p class="article-content" style="color: rgb(88, 88, 88);">{{ object.content }}</p>
-            <div class="border-top pt-2 ">
-                <span class="pl-1">Upvote</span> <span class="pl-5">Downvote</span> <span class="pl-5">Comment</span>
+            <div class="border-top pt-.5">
+                <small class="text-muted">2 Upvotes</small>
+                <small class="text-muted ml-3">3 Downvotes</small>
+                <small class="text-muted ml-3">4 Comments</small>
+            </div> 
+            <div class="border-top pt-3">
+                <a class="btn btn-primary btn-sm" style="color:whitesmoke;">
+                    <i class="fa fa-angle-up fa-lg" aria-hidden="true"></i> <span class="pl-.5">Upvote</span>
+                </a>
+                <a class="btn btn-warning btn-sm ml-2">
+                    <i class="fa fa-angle-down fa-lg" aria-hidden="true"></i> <span class="pl-.5">Downvote</span>
+                </a>                
             </div> 
         </div>
         
