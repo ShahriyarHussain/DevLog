@@ -35,7 +35,9 @@
     {% if is_paginated %}
         {% if page_obj.has_previous %}
             <a class="btn btn-outline-primary mb-4" href="?page=1">Latest</a>
-            <a class="btn btn-outline-secondary mb-4" href="?page={{page_obj.previous_page_number}}">Previous</a>
+            <a class="btn btn-outline-secondary mb-4" href="?page={{page_obj.previous_page_number}}">
+                <i class="fa fa-angle-left" aria-hidden="true"></i> <span class="pl-.5">Previous</span>
+            </a>
         {% endif %}
 
         {% for num in page_obj.paginator.page_range %}
@@ -47,7 +49,9 @@
         {% endfor %}
 
         {% if page_obj.has_next %}
-            <a class="btn btn-outline-secondary mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
+            <a class="btn btn-outline-secondary mb-4" href="?page={{page_obj.next_page_number}}">
+                <span class="pr-.5">Next</span> <i class="fa fa-angle-right" aria-hidden="true"></i>    
+            </a>
             <a class="btn btn-outline-primary mb-4" href="?page={{page_obj.paginator.num_pages}}">Oldest</a>
         {% endif %}
 

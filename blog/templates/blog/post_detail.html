@@ -2,14 +2,14 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <br> 
-    <article class="media content-section mb-4" style="border-radius: 3%;">
+    <article class="media content-section mb-2" style="border-radius: 10pt;">
         <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
         <div class="media-body">
             <div class="article-metadata">
                 <a class="mr-2" href="{% url 'user-posts' object.author.username%}">{{ object.author }}</a>
                 <small class="text-muted"> {{ object.date_posted|date:"l, F d, Y" }}</small>
                 {% if object.author == user %} 
-                    <small style="margin-left: 180pt;">
+                    <small class="ml-2">
                         <a class="btn btn-primary btn-sm" style="color:whitesmoke;" href="{% url 'post-update' object.id %}">
                             <i class="fa fa-pencil" aria-hidden="true"></i><span class="pl-1">Edit</span>
                         </a>
@@ -36,15 +36,15 @@
             </div>                         
     </article>
 
-    <div class="content-section pt-1">
+    <div class="content-section pt-1" style="border-radius: 10pt;">
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4"> Comments </legend>
-                {{ forms|crispy }}  
+                {{ form|crispy }}  
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-success" type="submit">Post</button>
+                <button class="btn btn-outline-success" type="submit">Comment</button>
             </div>
         </form>
         <div class="border-top pt-3 ">
