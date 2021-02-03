@@ -78,8 +78,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-# class CommentCreateView(LoginRequiredMixin, CreateView):
-#     model = Post_activity
+# class PostCommentView(LoginRequiredMixin, CreateView):
+#     model = Comment_table
 #     fields = ['comment']
 
 #     def form_valid(self, form):
