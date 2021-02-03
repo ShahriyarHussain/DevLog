@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from .models import Post, Post_activity
+from .models import Post, Vote_table, Comment_table
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.generic import (ListView,
@@ -78,13 +78,13 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-class CommentCreateView(LoginRequiredMixin, CreateView):
-    model = Post_activity
-    fields = ['comment']
+# class CommentCreateView(LoginRequiredMixin, CreateView):
+#     model = Post_activity
+#     fields = ['comment']
 
-    def form_valid(self, form):
-        forms.instance.author = self.request.user
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         form.instance.author = self.request.user
+#         return super().form_valid(form)
 
 
 def about(request):

@@ -17,12 +17,23 @@ class Post(models.Model):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
 
-class Post_activity(models.Model):
+class Vote_table(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['post', 'author'], name='pk_vote')]
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    vote = models.BooleanField()
-    comment = models.TextField(max_length=1000)
-    time_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    vote = models.BooleanField()
 
     def __self__(self):
         return self.title
+
+
+class Comment_table(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['post', 'author'], name='pk_comment')]
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.TextField()
+    time_posted = models.DateTimeField(default=timezone.now)
