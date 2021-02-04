@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
 from .models import Post, Vote_table, Comment_table
 from django.contrib.auth.models import User
@@ -9,6 +9,7 @@ from django.views.generic import (ListView,
                                   )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from .forms import CommentForm
 
 
 @login_required
@@ -20,7 +21,7 @@ def home(request):
 
 
 # @login_required
-class PostListView(LoginRequiredMixin, ListView):
+class PostListView(ListView):
     model = Post
     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
@@ -78,13 +79,21 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-# class PostCommentView(LoginRequiredMixin, CreateView):
-#     model = Comment_table
-#     fields = ['comment']
+@login_required
+def comment(request):
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment_form.save()
+            messages.success(
+                request, f'Comment Posted!')
+            return redirect('post-detail')
+        else:
+            comment_form = CommentForm()
+            messages.warning(
+                request, f' Invalid comment!')
 
-#     def form_valid(self, form):
-#         form.instance.author = self.request.user
-#         return super().form_valid(form)
+        return render(request, 'post/<int:pk>/', {'form': form})
 
 
 def about(request):

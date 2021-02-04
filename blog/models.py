@@ -33,7 +33,13 @@ class Comment_table(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['post', 'author'], name='pk_comment')]
+    # class Meta:
+    #     unique_together = (('post', 'author'),)
+
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     comment = models.TextField()
     time_posted = models.DateTimeField(default=timezone.now)
+
+    def __self__(self):
+        return self.title
