@@ -41,8 +41,20 @@
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4"> Comments </legend>
-                {{ comment_form|crispy }}  
+                {{ form.as_p }}  
             </fieldset>
+            {% for comment in object.comments.all %} 
+                <article class="media content-section" style="border-radius: 7px; background-color: rgb(250, 250, 250);">
+                    <img class="rounded-circle mr-2" src="{{ comment.author.profile.image.url }}" height="40" width="40">
+                    <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2">{{ comment.author }}</a>
+                        <small class="text-muted"> {{ comment.time_posted|date:"j M, f A" }}</small>
+                    </div>            
+                    <p class="article-content">{{ comment.content }}</p>
+                    </div>                                  
+                </article>
+            {% endfor %}
             <div class="form-group">
                 <button class="btn btn-outline-success" type="submit">Comment</button>
             </div>
@@ -52,6 +64,6 @@
                 <a class="ml-.5" href="{% url 'blog-home' %}"> Go Back</a>
             </small> 
         </div>
-    </div>  
+    </div> 
 
 {% endblock content %}

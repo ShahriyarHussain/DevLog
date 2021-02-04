@@ -1,12 +1,13 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.http import HttpResponse
-from .models import Post, Vote_table, Comment_table
+from .models import Post, Votes, Comments
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.generic import (ListView,
                                   DetailView, CreateView,
                                   UpdateView, DeleteView
                                   )
+from django.views.generic.edit import FormMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from .forms import CommentForm
@@ -40,8 +41,59 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
-class PostDetailView(DetailView):
+class PostDetailView(FormMixin, DetailView):
     model = Post
+    form_class = CommentForm
+
+    def get_success_url(self):
+        return reverse('post-detail', kwargs={'pk': self.object.id})
+
+    def get_context_data(self, **kwargs):
+        context = super(PostDetailView, self).get_context_data(**kwargs)
+        context['form'] = CommentForm(
+            initial={'post': self.object, 'author': self.request.user})
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        form.save()
+        return super(PostDetailView, self).form_valid(form)
+
+    # @login_required
+    # def comment(self, request, pk):
+    #     template_name = 'post-detail'
+    #     author = self.request.user
+    #     post = get_object_or_404(Post, pk=pk)
+    #     new_comment = None
+
+    #     if request.method == 'POST':
+    #         comment_form = CommentForm(data=request.POST)
+
+    #         if comment_form.is_valid():
+    #             new_comment = comment_form.save(commit=False)
+    #             new_comment.post = post
+    #             new_comment.author = author
+    #             new_comment.save()
+    #             messages.success(
+    #                 request, f'Comment Posted!')
+    #             return redirect('post-detail', pk=post.pk)
+
+    #         else:
+    #             comment_form = CommentForm()
+    #             messages.warning(
+    #                 request, f' Invalid comment!')
+
+    #         return render(request, template_name, {'post': post,
+    #                                                'author': author,
+    #                                                'new_comment': new_comment,
+    #                                                'comment_form': comment_form})
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -79,21 +131,34 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
 
-@login_required
-def comment(request):
-    if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment_form.save()
-            messages.success(
-                request, f'Comment Posted!')
-            return redirect('post-detail')
-        else:
-            comment_form = CommentForm()
-            messages.warning(
-                request, f' Invalid comment!')
+# @login_required
+# def comment(self, request, pk):
+#     template_name = 'post-comment'
+#     author = self.request.user
+#     post = get_object_or_404(Post, pk=pk)
+#     new_comment = None
 
-        return render(request, 'post/<int:pk>/', {'form': form})
+#     if request.method == 'POST':
+#         comment_form = CommentForm(data=request.POST)
+
+#         if comment_form.is_valid():
+#             new_comment = comment_form.save(commit=False)
+#             new_comment.post = post
+#             new_comment.author = author
+#             new_comment.save()
+#             messages.success(
+#                 request, f'Comment Posted!')
+#             return redirect('post-detail', pk=post.pk)
+
+#         else:
+#             comment_form = CommentForm()
+#             messages.warning(
+#                 request, f' Invalid comment!')
+
+#         return render(request, template_name, {'post': post,
+#                                                'author': author,
+#                                                'new_comment': new_comment,
+#                                                'comment_form': comment_form})
 
 
 def about(request):

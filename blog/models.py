@@ -17,10 +17,11 @@ class Post(models.Model):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
 
-class Vote_table(models.Model):
+class Votes(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['post', 'author'], name='pk_vote')]
+
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     vote = models.BooleanField()
@@ -29,17 +30,22 @@ class Vote_table(models.Model):
         return self.title
 
 
-class Comment_table(models.Model):
+class Comments(models.Model):
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    time_posted = models.DateTimeField(auto_now_add=True)
+
     class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=['post', 'author'], name='pk_comment')]
+        # constraints = [
+        #     models.UniqueConstraint(fields=['post', 'author'], name='pk_comment')]
+        ordering = ['-time_posted']
     # class Meta:
     #     unique_together = (('post', 'author'),)
 
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    comment = models.TextField()
-    time_posted = models.DateTimeField(default=timezone.now)
+    # post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    # author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __self__(self):
         return self.title

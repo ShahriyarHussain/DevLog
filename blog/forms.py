@@ -1,10 +1,10 @@
 # from django.forms import ModelForm
 from django import forms
-from .models import Comment_table
+from .models import Comments
 
 
 class CommentForm(forms.ModelForm):
 
     class Meta:
-        model = Comment_table
-        fields = ['comment']
+        model = Comments
+        fields = ['content', 'post', 'author']
