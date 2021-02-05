@@ -16,17 +16,19 @@
                 <small class="text-muted ml-3">300 Downvotes</small>
                 <small class="text-muted ml-3">{{ post.comments.count}} Comments</small>
             </div> 
-            <div class="border-top pt-3 ">
-                <a class="btn btn-primary btn-sm" style="color:whitesmoke;">
-                    <i class="fa fa-angle-up fa-lg" aria-hidden="true"></i> <span class="pl-.5">Upvote</span>
-                </a>
-                <a class="btn btn-warning btn-sm ml-3">
-                    <i class="fa fa-angle-down fa-lg" aria-hidden="true"></i> <span class="pl-.5">Downvote</span>
-                </a>
-                <a class="btn btn-secondary btn-sm ml-3" style="color:whitesmoke;" href="{% url 'post-detail' post.id %}">
-                    <i class="fa fa-comment fa-lg" aria-hidden="true"></i> <span class="pl-.5">Comment</span>
-                </a>
-            </div>
+            {% if user.is_authenticated %}
+                <div class="border-top pt-3 ">
+                    <a class="btn btn-primary btn-sm" style="color:whitesmoke;">
+                        <i class="fa fa-angle-up fa-lg" aria-hidden="true"></i> <span class="pl-.5">Upvote</span>
+                    </a>
+                    <a class="btn btn-warning btn-sm ml-3">
+                        <i class="fa fa-angle-down fa-lg" aria-hidden="true"></i> <span class="pl-.5">Downvote</span>
+                    </a>
+                    <a class="btn btn-secondary btn-sm ml-3" style="color:whitesmoke;" href="{% url 'post-detail' post.id %}">
+                        <i class="fa fa-comment fa-lg" aria-hidden="true"></i> <span class="pl-.5">Comment</span>
+                    </a>
+                </div>
+            {% endif %}
             </div>
             
         </article>
