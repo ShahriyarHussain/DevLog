@@ -14,7 +14,7 @@
             <div class="border-top pt-.5">
                 <small class="text-muted">500 Upvotes</small>
                 <small class="text-muted ml-3">300 Downvotes</small>
-                <small class="text-muted ml-3">200 Comments</small>
+                <small class="text-muted ml-3">{{ post.comments.count}} Comments</small>
             </div> 
             <div class="border-top pt-3 ">
                 <a class="btn btn-primary btn-sm" style="color:whitesmoke;">
@@ -58,9 +58,11 @@
     {% endif %}
     </div>
     <br>
-    {% if page_obj.paginator.count < '7' %}
+    <!--I know it isn't supposed to written this but I wrote it anyways-->
+    {% if page_obj.paginator.count > page_obj.number|add:'6' %}
         <h4 class="mb-3" style="text-align: center;">
             Posts So far: {{ page_obj.paginator.count }}
         </h4>
     {% endif %}
+    
 {% endblock content %}

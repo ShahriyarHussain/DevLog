@@ -23,8 +23,9 @@
             <p class="article-content" style="color: rgb(88, 88, 88);">{{ object.content }}</p>
             <div class="border-top pt-.5">
                 <small class="text-muted">2 Upvotes</small>
-                <small class="text-muted ml-3">3 Downvotes</small>
-                <small class="text-muted ml-3">4 Comments</small>
+                <small class="text-muted ml-3">3 Downvotes</small>                
+                <small class="text-muted ml-3">{{object.comments.count}} Comments</small>
+                
             </div> 
             <div class="border-top pt-3 mb-4">
                 <a class="btn btn-primary btn-sm" style="color:whitesmoke;">

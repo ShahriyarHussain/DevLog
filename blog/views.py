@@ -56,6 +56,7 @@ class PostDetailView(FormMixin, DetailView):
 
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
+        self.object.author = self.request.user
         form = self.get_form()
         if form.is_valid():
             return self.form_valid(form)
@@ -65,35 +66,6 @@ class PostDetailView(FormMixin, DetailView):
     def form_valid(self, form):
         form.save()
         return super(PostDetailView, self).form_valid(form)
-
-    # @login_required
-    # def comment(self, request, pk):
-    #     template_name = 'post-detail'
-    #     author = self.request.user
-    #     post = get_object_or_404(Post, pk=pk)
-    #     new_comment = None
-
-    #     if request.method == 'POST':
-    #         comment_form = CommentForm(data=request.POST)
-
-    #         if comment_form.is_valid():
-    #             new_comment = comment_form.save(commit=False)
-    #             new_comment.post = post
-    #             new_comment.author = author
-    #             new_comment.save()
-    #             messages.success(
-    #                 request, f'Comment Posted!')
-    #             return redirect('post-detail', pk=post.pk)
-
-    #         else:
-    #             comment_form = CommentForm()
-    #             messages.warning(
-    #                 request, f' Invalid comment!')
-
-    #         return render(request, template_name, {'post': post,
-    #                                                'author': author,
-    #                                                'new_comment': new_comment,
-    #                                                'comment_form': comment_form})
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -132,8 +104,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 # @login_required
-# def comment(self, request, pk):
-#     template_name = 'post-comment'
+# def postdetail(self, request, pk):
+#     template_name = 'post-detail'
 #     author = self.request.user
 #     post = get_object_or_404(Post, pk=pk)
 #     new_comment = None
