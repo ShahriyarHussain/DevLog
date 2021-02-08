@@ -9,22 +9,24 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'blog/main.css' %}">
 
-    {% if title %}
-        <title>Blog {{ title }}!</title>
+   {% if title %}
+        <title>{{ title }}</title>
     {% else %}
-        <title>Blog Home!</title>
+        <title>OBlog!</title>
     {% endif %}
   </head>
   <body style="font-family: Calibri, Helvetica, Arial, sans-serif; background-color: rgb(233, 233, 233);">
     <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #4c4af5ff;">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: rgb(52, 38, 179);">
           <div class="container">
+            <div class="navbar-nav">
+            </div>
             <a class="navbar-brand mr-4" href="{% url 'blog-home'%}">
-              <img src="/static/default.jpg" alt="" width="35" height="35">
-              OLOSH Blog
+              <img src="/static/default.png" alt="" width="45" height="45">
+              <span class="pl-1" style="font-weight: bold;">OBlog</span>
             </a>
             <button class="navbar-toggler" type="button"
             data-toggle="collapse" data-target="#navbarToggle"
@@ -42,8 +44,8 @@
                   <a class="nav-item nav-link" href="{%url 'profile'%}">Profile</a>
                   <a class="nav-item nav-link" href="{%url 'logout'%}">Logout</a>
                 {% else %}
-                <a class="nav-item nav-link" href="{%url 'login'%}">Login</a>
-                <a class="nav-item nav-link" href="{%url 'register'%}">Register</a>
+                  <a class="nav-item nav-link" href="{%url 'login'%}">Login</a>
+                  <a class="nav-item nav-link" href="{%url 'register'%}">Register</a>
                 {% endif %}
                 <a class="nav-item nav-link" href="{% url 'blog-about'%}">About</a>
               </div>

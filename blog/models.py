@@ -15,3 +15,33 @@ class Post(models.Model):
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
+
+
+class Votes(models.Model):
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['post', 'author'], name='pk_vote')]
+
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    vote = models.BooleanField()
+
+    def __self__(self):
+        return self.title
+
+
+class Comments(models.Model):
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments')
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    time_posted = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-time_posted']
+
+    # def get_absolute_url(self):
+    #     return reverse('post-detail', kwargs={'pk': self.id})
+
+    def __self__(self):
+        return self.title
