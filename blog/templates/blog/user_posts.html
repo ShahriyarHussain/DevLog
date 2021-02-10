@@ -1,7 +1,19 @@
 {% extends 'blog/base.html' %}
 {% block content %}
+    <!-- <div class="content-section" style="border-radius: 10pt;">
+        <div class="media">
+        <img class="rounded-circle account-img" src="{{view.kwargs.username.url}}"">
+        <div class="media-body">
+            <h2 class="account-heading">{{ view.kwargs.username }}</h2>
+            <p class="text-secondary">{{ view.kwargs.email }}</p>
+            <p class="text-muted"><em> {{ view.kwargs.short_bio }} </em></p>
+        </div>
+        </div>
+         FORM HERE
+        
+    </div> -->
     <h3 class="mb-3" style="text-align: center;">
-        Posts By {{ view.kwargs.username }}: {{ page_obj.paginator.count }} Post(s)
+        {{ view.kwargs.username }} made {{ page_obj.paginator.count }} Post(s) so far
     </h3>
     {% for post in posts %} 
         <article class="media content-section" style="border-radius: 7px;">

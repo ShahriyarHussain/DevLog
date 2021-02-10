@@ -40,5 +40,8 @@ class Comments(models.Model):
     class Meta:
         ordering = ['-time_posted']
 
+    # def get_absolute_url(self):
+    #     return reverse('post-detail', kwargs={'pk': self.id})
+
     def __self__(self):
         return self.title
