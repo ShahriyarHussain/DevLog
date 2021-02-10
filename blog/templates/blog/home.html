@@ -11,6 +11,9 @@
             </div>
             <h3><a class="article-title" href="{% url 'post-detail' post.id %}"">{{ post.title }}</a></h3>
             <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content }}</p>
+            {% if post.image %}
+                <img src="{{ post.image.url }}">
+            {% endif %}
             <div class="border-top pt-.5">
                 <!-- <small class="text-muted">500 Upvotes</small>
                 <small class="text-muted ml-3">300 Downvotes</small>                 -->

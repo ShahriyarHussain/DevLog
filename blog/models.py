@@ -2,22 +2,34 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
+from PIL import Image
 
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
+    image = models.ImageField(upload_to='post_images', blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __self__(self):
         return self.title
 
+    def save(self, *args, **kwargs):
+        super().save()
+
+        img = Image.open(self.image.path)
+
+        if img.height > 1920 and img.width > 1080:
+            output_size = (1920, 1080)
+            img.thumbnail(output_size)
+            img.save(self.image.path)
+
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
 
-class Votes(models.Model):
+class Vote(models.Model):
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['post', 'author'], name='pk_vote')]
@@ -30,7 +42,7 @@ class Votes(models.Model):
         return self.title
 
 
-class Comments(models.Model):
+class Comment(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE)

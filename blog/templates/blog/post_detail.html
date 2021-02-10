@@ -21,6 +21,9 @@
             </div>            
             <h2 class="article-title">{{ object.title }}</h2>
             <p class="article-content" style="color: rgb(88, 88, 88);">{{ object.content }}</p>
+            {% if object.image %}
+                <img src="{{ object.image.url }}">
+            {% endif %}
             <div class="border-top pt-.5">
                 <!-- <small class="text-muted">2 Upvotes</small>
                 <small class="text-muted ml-3">3 Downvotes</small>                 -->
