@@ -8,7 +8,8 @@ from PIL import Image
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
-    image = models.ImageField(upload_to='post_images', blank=True, null=True)
+    image = models.ImageField(
+        default=None, upload_to='post_images', blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -17,13 +18,6 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         super().save()
-
-        img = Image.open(self.image.path)
-
-        if img.height > 1920 and img.width > 1080:
-            output_size = (1920, 1080)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
 
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})

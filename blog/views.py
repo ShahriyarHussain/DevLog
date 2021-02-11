@@ -75,40 +75,12 @@ class PostDetailView(FormMixin, DetailView):
         return super().form_valid(form)
 
 
-# def comment(self, request, pk):
-#     template_name = 'post-detail'
-#     author = self.request.user
-#     post = get_object_or_404(Post, pk=pk)
-#     new_comment = None
-
-#     if request.method == 'POST':
-#         comment_form = CommentForm(data=request.POST)
-
-#         if comment_form.is_valid():
-#             new_comment = comment_form.save(commit=False)
-#             new_comment.post = post
-#             new_comment.author = author
-#             new_comment.save()
-#             messages.success(
-#                 request, f'Comment Posted!')
-#             return redirect('post-detail', pk=post.pk)
-
-#         else:
-#             comment_form = CommentForm()
-#             messages.warning(
-#                 request, f' Invalid comment!')
-
-#         return render(request, template_name, {'post': post,
-#                                                'author': author,
-#                                                'new_comment': new_comment,
-#                                                'comment_form': comment_form})
-
-
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'content', 'image']
 
     def form_valid(self, form):
+        # form.instance.image = self.image.url
         form.instance.author = self.request.user
         form.save()
         return super().form_valid(form)
@@ -119,6 +91,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     fields = ['title', 'content', 'image']
 
     def form_valid(self, form):
+
         form.instance.author = self.request.user
         return super().form_valid(form)
 

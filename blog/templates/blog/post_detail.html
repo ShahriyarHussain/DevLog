@@ -44,7 +44,7 @@
    
     <div class="content-section pt-1" style="border-radius: 10pt;">
         {% if user.is_authenticated %}
-            <form method="POST">
+            <form method="POST" >
                 {% csrf_token %}
                 <fieldset class="form-group">
                     <legend class="border-bottom mb-4"> Make a Comment </legend>
