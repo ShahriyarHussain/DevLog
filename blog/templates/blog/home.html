@@ -9,10 +9,14 @@
                 <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
                 <small class="text-muted"> {{ post.date_posted|date:"l, F d, Y" }}</small>
             </div>
-            <h3><a class="article-title" href="{% url 'post-detail' post.id %}"">{{ post.title }}</a></h3>
+            <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
             <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content }}</p>
             {% if post.image %}
-            <small class="text-muted" style="margin-bottom: 5pt;"> This Post Contains Images </small>
+            <small> 
+                <a class="text-muted" style="margin-bottom: 5pt;" href="{% url 'post-detail' post.id %}"> 
+                    This Post Contains Images
+                </a> 
+            </small>
             {% endif %}
             <div class="border-top pt-.5">
                 <!-- <small class="text-muted">500 Upvotes</small>
