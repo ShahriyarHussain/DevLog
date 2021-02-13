@@ -1,28 +1,33 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
-# from .models import *
-# from .forms import contact_form #NEEDS WORK HERE
+# from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+# from .models import Feedback
+from .forms import FeedbackForm
 from django.core.mail import send_mail, BadHeaderError
 from django.shortcuts import redirect
 
 
 def feedback(request):
     if request.method == 'POST':
-        form = contact_form()
-    else:
-        form = contact_form(request.POST)
+        form = FeedbackForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['email']
-            name = form.cleaned_data['name']
-            content = form.cleaned_data['content']
-            try:
-                send_mail(email, name, content, [
-                          'californiamikegreen@yahoo.com'])
-            except BadHeaderError:
-                return HttpResponse('Invalid header found.')
-            return redirect('success')
-    return render(request, "contact.html", {'form': form})
+            form.save()
+            # name = form.cleaned_data['name']
+            # email = form.cleaned_data['email']
+            # subject = form.cleaned_data['subject']
+            # content = 'from' + name + ':' + form.cleaned_data['details']
+            # # to_mail = 'shossainshihab36@gmail.com'
+            # try:
+            #     send_mail(subject, content, [
+            #               email, 'shossainshihab36@gmail.com'], fail_silently=False)
+            # except BadHeaderError:
+            #     return HttpResponse('Invalid header found.')
+            return redirect('feedback_success')
+    else:
+        form = FeedbackForm()
+    return render(request, "report/feedback.html", {
+        'form': form,
+        'title': 'Feedback'})
 
 
 def success(request):
-    return HttpResponse('Success! Thank you for your message.')
+    return render(request, 'report/feedback_success.html')

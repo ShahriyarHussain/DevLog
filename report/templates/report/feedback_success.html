@@ -1,0 +1,8 @@
+{% extends 'blog/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section" style="border-radius: 10pt;">
+    <h3 style="text-align: center;">Thank you for your feedback, Your response has been recorded</h3>
+    <h6 class="text-muted border-top mt-4" style="text-align: center;">Enter another <a href="{% url 'feedback' %}">response</a> ?</h6>
+</div>
+{% endblock %}
