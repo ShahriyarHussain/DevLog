@@ -5,6 +5,21 @@ from django.urls import reverse
 from django_resized import ResizedImageField
 
 
+POST_TYPES = [
+    ('RESEARCH', 'Research'),
+    ('TRAVEL', 'Travel'),
+    ('ART', 'Art'),
+    ('ASTROLOGY', 'Astrology'),
+    ('PHOTO', 'Photo'),
+    ('PROGRAMMING', 'Programming'),
+    ('MISCELLANEOUS', 'Miscellaneous'),
+    ('UPDATE', 'Update'),
+    ('HOTFIX', 'Hotfix'),
+    ('NATURE', 'Nature'),
+    ('JOKE', 'Joke')
+]
+
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
@@ -12,6 +27,8 @@ class Post(models.Model):
         size=[620, 500], upload_to='post_images', blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    post_type = models.CharField(
+        default='MISCELLANEOUS', max_length=23, choices=POST_TYPES)
 
     def __self__(self):
         return self.title
