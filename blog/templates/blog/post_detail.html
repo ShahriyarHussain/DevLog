@@ -20,6 +20,23 @@
                 {% endif %}
             </div>            
             <h2 class="article-title">{{ object.title }}</h2>
+            {% if post.post_type == 'HOTFIX'%}
+                <small class="badge badge-danger"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'UPDATE' %}    
+                <small class="badge badge-warning"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'MISCALLENOUS' %}    
+                <small class="badge badge-secondary"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'PROGRAMMING' %}    
+                <small class="badge badge-info"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'ART' %}    
+                <small class="badge badge-primary"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'PHOTO' %}    
+                <small class="badge badge-dark"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'ASTROLOGY' %}
+                <small class="badge badge-info"> {{ post.post_type }}</small>
+            {% else %}    
+                <small class="badge badge-success"> {{ post.post_type }}</small>
+            {% endif %}
             <p class="article-content" style="color: rgb(88, 88, 88);">{{ object.content }}</p>
             {% if object.image %}
                 <img src="{{ object.image.url }}">

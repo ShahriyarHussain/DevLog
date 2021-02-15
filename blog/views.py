@@ -40,6 +40,18 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
+# class TypePostListView(ListView):
+#     model = Post
+#     template_name = 'blog/post_types.html'  # <app>/<model>_<viewtype>.html
+#     context_object_name = 'types'
+#     paginate_by = 5
+
+#     def get_queryset(self):
+#         types = get_object_or_404(
+#             Post, post_types=self.kwargs.get('post_type'))
+#         return Post.objects.filter(post_type=types).order_by('-date_posted')
+
+
 class PostDetailView(FormMixin, DetailView):
     model = Post
     form_class = CommentForm
@@ -77,7 +89,7 @@ class PostDetailView(FormMixin, DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content', 'image']
+    fields = ['title', 'content', 'image', 'post_type']
 
     def form_valid(self, form):
         # form.instance.image = self.image.url
@@ -88,7 +100,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content', 'image']
+    fields = ['title', 'content', 'image', 'post_type']
 
     def form_valid(self, form):
 

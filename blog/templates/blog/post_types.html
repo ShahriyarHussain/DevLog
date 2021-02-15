@@ -13,7 +13,7 @@
         
     </div> -->
     <h3 class="mb-3" style="text-align: center;">
-        {{ view.kwargs.username }} made {{ page_obj.paginator.count }} Post(s) so far
+        {{ view.kwargs.post_types }} Related{{ page_obj.paginator.count }} Post(s) so far
     </h3>
     {% for post in posts %} 
         <article class="media content-section" style="border-radius: 10pt;">
@@ -25,23 +25,7 @@
                 <small class="text-muted"> {{ post.date_posted|date:"l, F d, Y" }}</small>
             </div>
             <h3><a class="article-title" href="{% url 'post-detail' post.id %}"">{{ post.title }}</a></h3>
-            {% if post.post_type == 'HOTFIX'%}
-                <small class="badge badge-danger"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'UPDATE' %}    
-                <small class="badge badge-warning"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'MISCALLENOUS' %}    
-                <small class="badge badge-secondary"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'PROGRAMMING' %}    
-                <small class="badge badge-info"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'ART' %}    
-                <small class="badge badge-primary"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'PHOTO' %}    
-                <small class="badge badge-dark"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'ASTROLOGY' %}
-                <small class="badge badge-info"> {{ post.post_type }}</small>
-            {% else %}    
-                <small class="badge badge-success"> {{ post.post_type }}</small>
-            {% endif %}
+            <small class="badge badge-primary"> {{ post.post_type }}</small>
             <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content }}</p>
             </div>
         </article>

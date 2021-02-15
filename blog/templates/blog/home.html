@@ -9,7 +9,27 @@
                 <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
                 <small class="text-muted"> {{ post.date_posted|date:"l, F d, Y" }}</small>
             </div>
-            <h3><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h3>
+            <h3>
+                <a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a> 
+                
+            </h3>
+            {% if post.post_type == 'HOTFIX'%}
+                <small class="badge badge-danger"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'UPDATE' %}    
+                <small class="badge badge-warning"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'MISCALLENOUS' %}    
+                <small class="badge badge-secondary"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'PROGRAMMING' %}    
+                <small class="badge badge-info"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'ART' %}    
+                <small class="badge badge-primary"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'PHOTO' %}    
+                <small class="badge badge-dark"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'ASTROLOGY' %}
+                <small class="badge badge-info"> {{ post.post_type }}</small>
+            {% else %}    
+                <small class="badge badge-success"> {{ post.post_type }}</small>
+            {% endif %}
             <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content }}</p>
             {% if post.image %}
             <small> 
@@ -21,7 +41,7 @@
             <div class="border-top pt-.5">
                 <!-- <small class="text-muted">500 Upvotes</small>
                 <small class="text-muted ml-3">300 Downvotes</small>                 -->
-                <small class="text-muted ml-1">{{ post.comments.count}} Comments</small>                
+                <small class="ml-1"> <a class="text-muted" href="{% url 'post-detail' post.id %}">{{ post.comments.count}} Comments</a></small>
             </div> 
             {% if user.is_authenticated %}
                 <div class="border-top pt-3 ">
