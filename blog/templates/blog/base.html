@@ -20,7 +20,7 @@
   </head>
   <body style="font-family: Calibri, Helvetica, Arial, sans-serif; background-color: rgb(233, 233, 233);">
     <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: rgb(52, 38, 179);">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top " style="background-color: rgb(52, 38, 179);">
           <div class="container">
             <div class="navbar-nav">
             </div>
@@ -28,15 +28,22 @@
               <img src="/default.png" alt="" width="45" height="45">
               <span class="pl-1" style="font-weight: bold;">OBlog</span>            
             </a>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-primary ml-1">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </button>
+            </form>
             <button class="navbar-toggler" type="button" 
             data-toggle="collapse" data-target="#navbarToggle" 
             aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            </button>
+            </button>           
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
               </div>             
               <!-- Navbar Right Side -->
+             
               <div class="navbar-nav">
                 <a class="nav-item nav-link" href="{% url 'blog-home'%}">Home</a>                
                 {% if user.is_authenticated %}

@@ -17,6 +17,8 @@ def home(request):
     context = {
         'posts': Post.objects.all()
     }
+    messages.success(
+        request, f'Account Creation Successful! Username:')
     return render(request, 'blog/home.html', context)
 
 
