@@ -5,4 +5,4 @@ blog/__init__.py
 blog/__pycache__/
 *.pyc
 
-djangoproject/settings.py
+.vscode/

@@ -9,6 +9,7 @@ from django.views.generic import (ListView,
 from django.views.generic.edit import FormMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from django.db.models import Q
 from .forms import CommentForm
 
 
@@ -40,6 +41,21 @@ class UserPostListView(ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by('-date_posted')
+
+
+class SearchListView(ListView):
+    model = Post
+    template_name = 'blog/search_list.html'
+    ordering = ['-date_posted']
+    paginate_by = 7
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        post_list = Post.objects.filter(Q(title__icontains=query) | Q(
+            content__icontains=query) | Q(author__username__icontains=query) | Q(
+            post_type__icontains=query) | Q(comments__content__icontains=query)).distinct()
+
+        return post_list
 
 
 # class TypePostListView(ListView):

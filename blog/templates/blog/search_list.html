@@ -1,0 +1,56 @@
+{% extends 'blog/base.html' %}
+{% block content %}    
+    {% for post in object_list %} 
+        <article class="media content-section" style="border-radius: 10pt;">
+            <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
+            <div class="media-body">
+            <div class="article-metadata">
+                <!-- <a class="mr-2" href="{% url 'profile'%}">{{ post.author }}</a> -->
+                <span class="mr-2" >{{ post.author }}</span>
+                <small class="text-muted"> {{ post.date_posted|date:"l, F d, Y" }}</small>
+            </div>
+            <h3><a class="article-title" href="{% url 'post-detail' post.id %}"">{{ post.title }}</a></h3>
+            {% if post.post_type == 'HOTFIX'%}
+                <small class="badge badge-danger"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'UPDATE' %}    
+                <small class="badge badge-warning"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'MISCALLENOUS' %}    
+                <small class="badge badge-secondary"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'PROGRAMMING' %}    
+                <small class="badge badge-info"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'ART' %}    
+                <small class="badge badge-primary"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'PHOTO' %}    
+                <small class="badge badge-dark"> {{ post.post_type }}</small>
+            {% elif post.post_type == 'ASTROLOGY' %}
+                <small class="badge badge-info"> {{ post.post_type }}</small>
+            {% else %}    
+                <small class="badge badge-success"> {{ post.post_type }}</small>
+            {% endif %}
+            <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content }}</p>
+            </div>
+        </article>
+    {% endfor %}
+    <div style="text-align: center;">
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a class="btn btn-outline-secondary mb-4" href="?page=1">Latest</a>
+            <a class="btn btn-outline-secondary mb-4" href="?page={{page_obj.previous_page_number}}">Previous</a>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <a class="btn btn-secondary mb-4" href="?page={{num}}"> {{num}}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a class="btn btn-outline-secondary mb-4" href="?page={{num}}"> {{num}}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-outline-secondary mb-4" href="?page={{page_obj.next_page_number}}">Next</a>
+            <a class="btn btn-outline-secondary mb-4" href="?page={{page_obj.paginator.num_pages}}">Oldest</a>
+        {% endif %}
+
+    {% endif %}
+    </div>
+{% endblock content %}
