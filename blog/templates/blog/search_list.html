@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 {% block content %}    
     {% for post in object_list %} 
-        <article class="media content-section" style="border-radius: 10pt;">
+        <article class="media content-section" style="color: rgb(88, 88, 88);border-radius: 10pt;">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
             <div class="media-body">
             <div class="article-metadata">
@@ -27,7 +27,7 @@
             {% else %}    
                 <small class="badge badge-success"> {{ post.post_type }}</small>
             {% endif %}
-            <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content }}</p>
+            <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content | safe }}</p>
             </div>
         </article>
     {% endfor %}

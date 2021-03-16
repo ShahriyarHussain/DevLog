@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django_resized import ResizedImageField
+from tinymce.models import HTMLField
 from PIL import Image
 
 POST_TYPES = [
@@ -22,7 +23,7 @@ POST_TYPES = [
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    content = HTMLField()
     image = ResizedImageField(
         size=[620, 500], upload_to='post_images', blank=True, null=True)
     date_posted = models.DateTimeField(default=timezone.now)
@@ -57,7 +58,7 @@ class Comment(models.Model):
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    content = models.TextField()
+    content = HTMLField()
     time_posted = models.DateTimeField(auto_now_add=True)
 
     class Meta:

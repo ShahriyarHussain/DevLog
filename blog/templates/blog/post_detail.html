@@ -9,8 +9,8 @@
                 <a class="mr-2" href="{% url 'user-posts' object.author.username%}">{{ object.author }}</a>
                 <small class="text-muted"> {{ object.date_posted|date:"l, F d, Y" }}</small>
                 {% if object.author == user %} 
-                    <small class="ml-2">
-                        <a class="btn btn-primary btn-sm" style="color:whitesmoke;" href="{% url 'post-update' object.id %}">
+                    <small class="ml-2" >
+                        <a class="btn btn-dark btn-sm" style="color:whitesmoke;" href="{% url 'post-update' object.id %}">
                             <i class="fa fa-pencil" aria-hidden="true"></i><span class="pl-1">Edit</span>
                         </a>
                         <a class="btn btn-danger btn-sm ml-2" style="color:whitesmoke;" href="{% url 'post-delete' object.id %}">
@@ -37,7 +37,7 @@
             {% else %}    
                 <small class="badge badge-success"> {{ post.post_type }}</small>
             {% endif %}
-            <p class="article-content" style="color: rgb(88, 88, 88);">{{ object.content }}</p>
+            <p class="article-content" style="color: rgb(88, 88, 88);">{{ object.content | safe }}</p>
             {% if object.image %}
                 <img src="{{ object.image.url }}">
             {% endif %}
@@ -68,7 +68,7 @@
                     {{ form.as_p }}  
                 </fieldset>
                 <div class="form-group">
-                    <button class="btn btn-success" type="submit"> Share!</button>
+                    <button class="btn btn-dark" type="submit"> Share!</button>
                 </div>
             </form>
         {% endif %}
@@ -84,7 +84,7 @@
                     <a class="mr-2">{{ comment.author }}</a>
                     <small class="text-muted"> {{ comment.time_posted|date:"j M, f A" }}</small>
                 </div>            
-                <p class="article-content mb-0">{{ comment.content }}</p>
+                <p class="article-content mb-0">{{ comment.content | safe }}</p>
                 </div>                                  
             </article>
         {% endfor %}
