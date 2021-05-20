@@ -1,3 +1,3 @@
 # DevLog - A blog for Devs
 
-A blog web page built using Django Framework, following a tutorial by Corey Schafer from YouTube
+A simple blog with basic functionalities like posting texts with images, post tags, rich text formatting and also commenting to posts. 
