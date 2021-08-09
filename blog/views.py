@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from .models import Post
+from .models import Post, Vote
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.generic import (ListView,
