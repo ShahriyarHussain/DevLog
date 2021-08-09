@@ -6,3 +6,4 @@ blog/__pycache__/
 *.pyc
 
 .vscode/
+check.sh
