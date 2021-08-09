@@ -30,6 +30,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post_type = models.CharField(
         default='MISCALLENOUS', max_length=23, choices=POST_TYPES)
+    # vote = models.OneToOneField(pk_vote, on_delete=models.CASCADE)
 
     def __self__(self):
         return self.title

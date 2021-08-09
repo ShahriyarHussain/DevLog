@@ -7,19 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <script src="https://cdn.tiny.cloud/1/bxod73x592gkrnqibjnoe8g4emzov078j4mxutrrtw6he23a/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>    
-    <script>tinymce.init({selector:'textarea'});</script>    
+    <script src="https://cdn.tiny.cloud/1/bxod73x592gkrnqibjnoe8g4emzov078j4mxutrrtw6he23a/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>tinymce.init({selector:'textarea'});</script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'blog/main.css' %}">
-    
+
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
@@ -34,7 +34,7 @@
             </div>
             <a class="navbar-brand mr-4" href="{% url 'blog-home'%}">
               <img src="/default.png" alt="" width="45" height="45">
-              <span class="pl-1 pr-3" style="font-weight: bold;">HAB</span>            
+              <span class="pl-1 pr-3" style="font-weight: bold;">HAB</span>
             </a>
             <form class="d-flex" style="margin: 0 auto;" action="{% url 'post-search' %}" method="get">
               <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search">
@@ -42,18 +42,18 @@
                 <i class="fa fa-search" aria-hidden="true"></i>
               </button>
             </form>
-            <button class="navbar-toggler" type="button" 
-            data-toggle="collapse" data-target="#navbarToggle" 
+            <button class="navbar-toggler" type="button"
+            data-toggle="collapse" data-target="#navbarToggle"
             aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            </button>           
+            </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
-              </div>             
+              </div>
               <!-- Navbar Right Side -->
-             
+
               <div class="navbar-nav">
-                <a class="nav-item nav-link" href="{% url 'blog-home'%}">Home</a>                
+                <a class="nav-item nav-link" href="{% url 'blog-home'%}">Home</a>
                 {% if user.is_authenticated %}
                   <a class="nav-item nav-link" href="{%url 'post-create'%}">Create Post</a>
                   <a class="nav-item nav-link" href="{%url 'profile'%}">Profile</a>
@@ -81,10 +81,10 @@
             {% block content %}{% endblock %}
           </div>
           {% if user.is_authenticated %}
-            <!-- <div class="col-md-4">
+            <div class="col-md-4 mt-4">
               <div class="content-section" style="border-radius: 5%;background-color: #f7f7f7;">
                 <h3>Catch Up!</h3>
-                <p class='text-muted'>Get updated with the latest notifications.
+                <p class='text-muted'>This section is being currently updated
                   <ul class="list-group" style="border-radius: 3%;">
                     <li class="list-group-item list-group-item-light">Latest Posts</li>
                     <li class="list-group-item list-group-item-light">Announcements</li>
@@ -93,17 +93,17 @@
                   </ul>
                 </p>
               </div>
-            </div> -->
+            </div>
             {% endif %}
         </div>
       </main>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
     integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
