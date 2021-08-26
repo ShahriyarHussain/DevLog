@@ -23,8 +23,9 @@
     {% if title %}
         <title>{{ title }}</title>
     {% else %}
-        <title>OBlog!</title>
+        <title>DevLog</title>
     {% endif %}
+    <link rel="shortcut icon" type="image/jpg" href="/static/default.png"/>
   </head>
   <body style="font-family:Poppins, Arial, sans-serif; background-color: rgb(31, 31, 31);">
     <header class="site-header">
@@ -33,8 +34,8 @@
             <div class="navbar-nav">
             </div>
             <a class="navbar-brand mr-4" href="{% url 'blog-home'%}">
-              <img src="/default.png" alt="" width="45" height="45">
-              <span class="pl-1 pr-3" style="font-weight: bold;">HAB</span>
+              <img src="/static/default.png" alt="" width="45" height="50">
+              <span class="pl-1 pr-3" style="font-weight: bold;">DevLog</span>
             </a>
             <form class="d-flex" style="margin: 0 auto;" action="{% url 'post-search' %}" method="get">
               <input class="form-control me-2" name="q" type="search" placeholder="Search" aria-label="Search">
@@ -81,10 +82,10 @@
             {% block content %}{% endblock %}
           </div>
           {% if user.is_authenticated %}
-            <div class="col-md-4 mt-4">
+            <!-- <div class="col-md-4">
               <div class="content-section" style="border-radius: 5%;background-color: #f7f7f7;">
                 <h3>Catch Up!</h3>
-                <p class='text-muted'>This section is being currently updated
+                <p class='text-muted'>Get updated with the latest notifications.
                   <ul class="list-group" style="border-radius: 3%;">
                     <li class="list-group-item list-group-item-light">Latest Posts</li>
                     <li class="list-group-item list-group-item-light">Announcements</li>
@@ -93,7 +94,7 @@
                   </ul>
                 </p>
               </div>
-            </div>
+            </div> -->
             {% endif %}
         </div>
       </main>

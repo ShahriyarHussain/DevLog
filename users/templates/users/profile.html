@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
-{% block content %}    
+{% block content %}
     <div class="content-section" style="border-radius: 10pt;">
         <div class="media">
         <img class="rounded-circle account-img" src="{{user.profile.image.url}}"">
@@ -15,8 +15,8 @@
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4"> Update Profile </legend>
-                {{ u_form|crispy }}  
-                {{ p_form|crispy }}  
+                {{ u_form|crispy }}
+                {{ p_form|crispy }}
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-dark" type="submit">Save Changes</button>

@@ -7,17 +7,15 @@ from tinymce.models import HTMLField
 from PIL import Image
 
 POST_TYPES = [
-    ('RESEARCH', 'Research'),
+    ('ACADEMIC', 'Academic'),
     ('TRAVEL', 'Travel'),
     ('ART', 'Art'),
-    ('ASTROLOGY', 'Astrology'),
-    ('PHOTO', 'Photo'),
+    ('SCIENCE', 'Science'),
     ('PROGRAMMING', 'Programming'),
     ('MISCALLENOUS', 'Miscallenous'),
     ('UPDATE', 'Update'),
-    ('HOTFIX', 'Hotfix'),
-    ('NATURE', 'Nature'),
-    ('JOKE', 'Joke')
+    ('MOVIES', 'Movies'),
+    ('TRENDING', 'Trending')
 ]
 
 
@@ -30,10 +28,9 @@ class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     post_type = models.CharField(
         default='MISCALLENOUS', max_length=23, choices=POST_TYPES)
-    # vote = models.OneToOneField(pk_vote, on_delete=models.CASCADE)
 
     def __self__(self):
-        return self.title
+        return f'{self.post.title}'
 
     def save(self, *args, **kwargs):
         super().save()

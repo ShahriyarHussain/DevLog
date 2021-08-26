@@ -1,6 +1,0 @@
-django_cleanup
-django_crispy_forms
-django_resized
-pillow
-image
-django-tinymce

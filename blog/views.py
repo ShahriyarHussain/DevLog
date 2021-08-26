@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, reverse
-from .models import Post, Vote
+from .models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.generic import (ListView,
@@ -8,7 +8,6 @@ from django.views.generic import (ListView,
                                   )
 from django.views.generic.edit import FormMixin
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.contrib import messages
 from django.db.models import Q
 from .forms import CommentForm
 
@@ -18,8 +17,6 @@ def home(request):
     context = {
         'posts': Post.objects.all()
     }
-    messages.success(
-        request, f'Account Creation Successful! Username:')
     return render(request, 'blog/home.html', context)
 
 
@@ -29,14 +26,14 @@ class PostListView(ListView):
     template_name = 'blog/home.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
     ordering = ['-date_posted']
-    paginate_by = 7
+    paginate_by = 10
 
 
 class UserPostListView(ListView):
     model = Post
     template_name = 'blog/user_posts.html'  # <app>/<model>_<viewtype>.html
     context_object_name = 'posts'
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
@@ -47,7 +44,7 @@ class SearchListView(ListView):
     model = Post
     template_name = 'blog/search_list.html'
     ordering = ['-date_posted']
-    paginate_by = 7
+    # paginate_by = 7 #Paginate not working, gives 500 server error
 
     def get_queryset(self):
         query = self.request.GET.get('q')
@@ -56,18 +53,6 @@ class SearchListView(ListView):
             post_type__icontains=query) | Q(comments__content__icontains=query)).distinct()
 
         return post_list
-
-
-# class TypePostListView(ListView):
-#     model = Post
-#     template_name = 'blog/post_types.html'  # <app>/<model>_<viewtype>.html
-#     context_object_name = 'types'
-#     paginate_by = 5
-
-#     def get_queryset(self):
-#         types = get_object_or_404(
-#             Post, post_types=self.kwargs.get('post_type'))
-#         return Post.objects.filter(post_type=types).order_by('-date_posted')
 
 
 class PostDetailView(FormMixin, DetailView):
@@ -132,6 +117,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return False
 
 
+
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Post
     success_url = '/'
@@ -144,7 +130,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 
 def about(request):
-    return render(request, 'blog/about.html', {'title': 'About Oblog'})
+    return render(request, 'blog/about.html', {'title': 'About DevLog'})
 
 # check tomorrow
 # def form_valid(self, form):

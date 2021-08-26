@@ -1,12 +1,12 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<div class="content-section" style="border-radius: 10pt;">    
+<div class="content-section" style="border-radius: 10pt;">
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4"> Send a Feedback </legend>
-            {{ form|crispy }}  
+            {{ form|crispy }}
         </fieldset>
         <div class="form-group">
             <button class="btn btn-outline-dark" type="submit">Send Feedback</button>
@@ -14,9 +14,8 @@
     </form>
     <div class="border-top pt-3 ">
         <small class="text-muted">
-            Please provide a correct email, name and appropriate subject if you want to be contacted for further inquiry or 
-            if want To contribute in DOCFIND project.
-        </small> 
+            Please provide a correct email, name and appropriate subject if you want to be contacted for further inquiry.
+        </small>
     </div>
 </div>
 {% endblock %}

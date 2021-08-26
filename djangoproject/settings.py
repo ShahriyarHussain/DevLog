@@ -18,12 +18,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY_1')
+# SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = '945g#yzt+033gk+ij41!um+!wy1xj9q)^cy)f#rx7qil!9mv'
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -129,10 +131,19 @@ DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = False
 
+
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/therealShihab/djangoproject/static'
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",
+#     'media',
+# ]
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = ''
+# MEDIA_ROOT = '/home/therealShihab/djangoproject/static'
+# MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -141,7 +152,10 @@ LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
+# DEFAULT_FROM_EMAIL = 'theretaliationbd@gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_KEY')
+EMAIL_HOST_USER = 'theretaliationbd@gmail.com'
+# os.environ.get('SG_USER')
+# os.environ.get('SG_KEY')
+EMAIL_HOST_PASSWORD = 'jbouqlqhddklbklh'
