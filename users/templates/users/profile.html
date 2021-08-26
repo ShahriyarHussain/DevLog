@@ -1,7 +1,7 @@
 {% extends 'blog/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-    <div class="content-section" style="border-radius: 2%;">
+    <div class="content-section" style="border-radius: 10pt;">
         <div class="media">
         <img class="rounded-circle account-img" src="{{user.profile.image.url}}"">
         <div class="media-body">
@@ -19,7 +19,7 @@
                 {{ p_form|crispy }}
             </fieldset>
             <div class="form-group">
-                <button class="btn btn-outline-success" type="submit">Save Changes</button>
+                <button class="btn btn-outline-dark" type="submit">Save Changes</button>
             </div>
         </form>
     </div>

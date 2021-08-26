@@ -9,8 +9,8 @@
                 <a class="mr-2" href="{% url 'user-posts' object.author.username%}">{{ object.author }}</a>
                 <small class="text-muted"> {{ object.date_posted|date:"l, F d, Y" }}</small>
                 {% if object.author == user %}
-                    <small class="ml-2">
-                        <a class="btn btn-primary btn-sm" style="color:whitesmoke;" href="{% url 'post-update' object.id %}">
+                    <small class="ml-2" >
+                        <a class="btn btn-dark btn-sm" style="color:whitesmoke;" href="{% url 'post-update' object.id %}">
                             <i class="fa fa-pencil" aria-hidden="true"></i><span class="pl-1">Edit</span>
                         </a>
                         <a class="btn btn-danger btn-sm ml-2" style="color:whitesmoke;" href="{% url 'post-delete' object.id %}">
@@ -20,24 +20,26 @@
                 {% endif %}
             </div>
             <h2 class="article-title">{{ object.title }}</h2>
-            {% if post.post_type == 'HOTFIX'%}
+
+            {% if post.post_type == 'UPDATE'%}
                 <small class="badge badge-danger"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'UPDATE' %}
+            {% elif post.post_type == 'MOVIES' %}
                 <small class="badge badge-warning"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'MISCELLANEOUS' %}
+            {% elif post.post_type == 'MISCALLENOUS' %}
                 <small class="badge badge-secondary"> {{ post.post_type }}</small>
             {% elif post.post_type == 'PROGRAMMING' %}
                 <small class="badge badge-info"> {{ post.post_type }}</small>
             {% elif post.post_type == 'ART' %}
                 <small class="badge badge-primary"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'PHOTO' %}
+            {% elif post.post_type == 'ACADEMIC' %}
                 <small class="badge badge-dark"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'ASTROLOGY' %}
+            {% elif post.post_type == 'SCIENCE' %}
                 <small class="badge badge-info"> {{ post.post_type }}</small>
             {% else %}
                 <small class="badge badge-success"> {{ post.post_type }}</small>
             {% endif %}
-            <p class="article-content" style="color: rgb(88, 88, 88);">{{ object.content }}</p>
+
+            <p class="article-content" style="color: rgb(88, 88, 88);">{{ object.content | safe }}</p>
             {% if object.image %}
                 <img src="{{ object.image.url }}">
             {% endif %}
@@ -61,14 +63,14 @@
 
     <div class="content-section pt-1" style="border-radius: 10pt;">
         {% if user.is_authenticated %}
-            <form method="POST">
+            <form method="POST" >
                 {% csrf_token %}
                 <fieldset class="form-group">
                     <legend class="border-bottom mb-4"> Make a Comment </legend>
                     {{ form.as_p }}
                 </fieldset>
                 <div class="form-group">
-                    <button class="btn btn-success" type="submit"> Post Comment!</button>
+                    <button class="btn btn-dark" type="submit"> Share!</button>
                 </div>
             </form>
         {% endif %}
@@ -84,7 +86,7 @@
                     <a class="mr-2">{{ comment.author }}</a>
                     <small class="text-muted"> {{ comment.time_posted|date:"j M, f A" }}</small>
                 </div>
-                <p class="article-content mb-0">{{ comment.content }}</p>
+                <p class="article-content mb-0">{{ comment.content | safe }}</p>
                 </div>
             </article>
         {% endfor %}

@@ -12,7 +12,7 @@
          FORM HERE
 
     </div> -->
-    <h3 class="mb-3" style="text-align: center;">
+    <h3 class="mb-3" style="text-align: center; color: white">
         {{ view.kwargs.username }} made {{ page_obj.paginator.count }} Post(s) so far
     </h3>
     {% for post in posts %}
@@ -25,24 +25,26 @@
                 <small class="text-muted"> {{ post.date_posted|date:"l, F d, Y" }}</small>
             </div>
             <h3><a class="article-title" href="{% url 'post-detail' post.id %}"">{{ post.title }}</a></h3>
-            {% if post.post_type == 'HOTFIX'%}
+
+            {% if post.post_type == 'UPDATE'%}
                 <small class="badge badge-danger"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'UPDATE' %}
+            {% elif post.post_type == 'MOVIES' %}
                 <small class="badge badge-warning"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'MISCELLANEOUS' %}
+            {% elif post.post_type == 'MISCALLENOUS' %}
                 <small class="badge badge-secondary"> {{ post.post_type }}</small>
             {% elif post.post_type == 'PROGRAMMING' %}
                 <small class="badge badge-info"> {{ post.post_type }}</small>
             {% elif post.post_type == 'ART' %}
                 <small class="badge badge-primary"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'PHOTO' %}
+            {% elif post.post_type == 'ACADEMIC' %}
                 <small class="badge badge-dark"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'ASTROLOGY' %}
+            {% elif post.post_type == 'SCIENCE' %}
                 <small class="badge badge-info"> {{ post.post_type }}</small>
             {% else %}
                 <small class="badge badge-success"> {{ post.post_type }}</small>
             {% endif %}
-            <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content }}</p>
+
+            <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content | safe}}</p>
             </div>
         </article>
     {% endfor %}

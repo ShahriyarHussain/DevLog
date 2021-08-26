@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'django_cleanup',
     'django_resized',
+    'tinymce',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -150,11 +151,11 @@ LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = 'login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.sendgrid.net'
-DEFAULT_FROM_EMAIL = 'md.shahriyar.hossain@g.bracu.ac.bd'
+EMAIL_HOST = 'smtp.gmail.com'
+# DEFAULT_FROM_EMAIL = 'theretaliationbd@gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_USER = 'theretaliationbd@gmail.com'
 # os.environ.get('SG_USER')
 # os.environ.get('SG_KEY')
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = 'jbouqlqhddklbklh'

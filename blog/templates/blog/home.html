@@ -1,34 +1,40 @@
 {% extends 'blog/base.html' %}
 {% block content %}
     <br>
-
+    <!-- <div class="alert alert-danger" role="alert"  style="text-align: center;">
+        <h5 style="font-weight: bold;">Search Bar still under development</h5>
+      </div>  -->
     {% for post in posts %}
         <article class="media content-section" style="border-radius: 10pt;">
             <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}">
             <div class="media-body">
             <div class="article-metadata">
-                <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author }}</a>
+                <a class="mr-2" href="{% url 'user-posts' post.author.username %}" style="font-weight: bold;">{{ post.author }}</a>
                 <small class="text-muted"> {{ post.date_posted|date:"l, F d, Y" }}</small>
             </div>
-            <h3><a class="article-title" href="{% url 'post-detail' post.id %}"">{{ post.title }}</a></h3>
-            {% if post.post_type == 'HOTFIX'%}
+            <h3>
+                <a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+
+            </h3>
+            {% if post.post_type == 'UPDATE'%}
                 <small class="badge badge-danger"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'UPDATE' %}
+            {% elif post.post_type == 'MOVIES' %}
                 <small class="badge badge-warning"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'MISCELLANEOUS' %}
+            {% elif post.post_type == 'MISCALLENOUS' %}
                 <small class="badge badge-secondary"> {{ post.post_type }}</small>
             {% elif post.post_type == 'PROGRAMMING' %}
                 <small class="badge badge-info"> {{ post.post_type }}</small>
             {% elif post.post_type == 'ART' %}
                 <small class="badge badge-primary"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'PHOTO' %}
+            {% elif post.post_type == 'ACADEMIC' %}
                 <small class="badge badge-dark"> {{ post.post_type }}</small>
-            {% elif post.post_type == 'ASTROLOGY' %}
+            {% elif post.post_type == 'SCIENCE' %}
                 <small class="badge badge-info"> {{ post.post_type }}</small>
             {% else %}
                 <small class="badge badge-success"> {{ post.post_type }}</small>
             {% endif %}
-            <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content }}</p>
+
+            <p class="article-content" style="color: rgb(88, 88, 88);">{{ post.content | safe }}</p>
             {% if post.image %}
             <small>
                 <a class="text-muted" style="margin-bottom: 5pt;" href="{% url 'post-detail' post.id %}">
@@ -36,10 +42,10 @@
                 </a>
             </small>
             {% endif %}
-            <div class="border-top pt-.5">
+            <div class="border-top pt-.5" >
                 <!-- <small class="text-muted">500 Upvotes</small>
                 <small class="text-muted ml-3">300 Downvotes</small>                 -->
-                <small class="text-muted ml-1">{{ post.comments.count}} Comments</small>
+                <small class="ml-1"> <a class="text-muted" href="{% url 'post-detail' post.id %}">{{ post.comments.count}} Comments</a></small>
             </div>
             {% if user.is_authenticated %}
                 <div class="border-top pt-3 ">
@@ -87,7 +93,7 @@
     <br>
     <!--I know it isn't supposed to written this but I wrote it anyways-->
     {% if page_obj.paginator.count > page_obj.number|add:'6' %}
-        <h4 class="mb-3" style="text-align: center;">
+        <h4 class="mb-3" style="text-align: center; color: white;">
             Posts So far: {{ page_obj.paginator.count }}
         </h4>
     {% endif %}

@@ -1,16 +1,21 @@
 {% extends 'blog/base.html' %}
 {% block content %}
-    <div class="content-section" style="border-radius: 10pt; text-align: center; align-content: center;">
-        <h3 style= "font-weight: bold;">
-            <span style="color:  #4c4af5ff;"> Olosh Blog </span>
-            Brought To You By
-            <span style="color:  rgb(0, 158, 206);">Olosh Softwares</span>
-        </h3><br>
-        <img src="/static/olosh.png" alt="olosh" width="140" height="120">
-        <!-- <img src="Desktop/Environments/djangoproject/media/olosh.png" alt="olosh" width="140" height="120"> -->
-        <br> <br>
+    <div class="content-section" style="border-radius: 10pt; text-align: center; ">
+        <h3 style= "font-weight: bold; font-size: 18pt;">
+            <p><span style="color:  rgb(0, 0, 0);">DevLog </span> Made By</p>
+
+            <img class="rounded-circle" src="/static/syrupIcon.png" alt="photo" width="120" height="113"><br> <br>
+            <p><span style="color:  rgb(29, 30, 58);"><a href="https://www.linkedin.com/in/muhammad-shahriyar-hussain-045993123/">Mohammad Shahriyar Hossain</a></span></p>
+        </h3>
         <p style="font-size: 16pt;">
-            Check out our other projects <a href="https://github.com/orgs/0l0sh-n3twork/projects">here</a>
+            Learn More About Me
         </p>
+        <p class="border-bottom border-secondary" style="padding-bottom: 3pt;">
+            <span style="color:  rgb(36, 54, 59);"><a href="https://github.com/ShahriyarHussain">GitHub Profile</a></span> |
+            <span style="color:  rgb(36, 54, 59);"><a href="https://github.com/0l0sh-n3twork">Group Projects</a></span> |
+            <span style="color:  rgb(36, 54, 59);"><a href="https://stackoverflow.com/users/10148061/shahriyarhossain">Stack Overflow Profile</a></span>
+        </p>
+        <span style="color:  rgb(36, 54, 59); font-size: 15pt;"><a href="{% url 'feedback'%}">Send Feedback</a></span> |
+        <span style="color:  rgb(36, 54, 59); font-size: 15pt;"><a href="https://www.mozilla.org/en-US/MPL/2.0/">Check License</a></span>
     </div>
 {% endblock content %}
