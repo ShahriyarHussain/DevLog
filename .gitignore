@@ -6,7 +6,12 @@ blog/__pycache__/
 *.pyc
 settings.py
 <<<<<<< HEAD
+<<<<<<< HEAD
 .env
 =======
 /djangoproject/settings.py
 >>>>>>> parent of 6b490ea... Remove Security Issues
+=======
+/djangoproject/settings.py
+>>>>>>> parent of 6b490ea... Remove Security Issues
+djangoproject/settings.py
