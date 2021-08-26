@@ -19,7 +19,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.environ.get('SECRET_KEY')
-SECRET_KEY = '965g#pzt+013xk+ij41!um+!wtrxj8q)^cy)f#rx7qi2l!49mv'
+
+SECRET_KEY = '945g#yzt+033gk+ij41!um+!wy1xj9q)^cy)f#rx7qil!9mv'
+
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -158,4 +160,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'theretaliationbd@gmail.com'
 # os.environ.get('SG_USER')
 # os.environ.get('SG_KEY')
-EMAIL_HOST_PASSWORD = 'oqndlrnqvtmtjaic'
+EMAIL_HOST_PASSWORD = 'jbouqlqhddklbklh'
+
