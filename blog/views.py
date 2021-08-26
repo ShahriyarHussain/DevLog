@@ -40,6 +40,9 @@ class UserPostListView(ListView):
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
+
+class PostDetailView(FormMixin, DetailView):
+    model = Post
 class SearchListView(ListView):
     model = Post
     template_name = 'blog/search_list.html'
@@ -72,15 +75,10 @@ class PostDetailView(FormMixin, DetailView):
         self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
-            # form.cleaned_data['author_id'] = self.request.user
-            # form.cleaned_data['post_id'] = self.object
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
 
-    # def form_valid(self, form):
-    #     form.save()
-    #     return super(PostDetailView, self).form_valid(form)
 
     def form_valid(self, form):
         comment = form.save(commit=False)
@@ -95,7 +93,6 @@ class PostCreateView(LoginRequiredMixin, CreateView):
     fields = ['title', 'content', 'image', 'post_type']
 
     def form_valid(self, form):
-        # form.instance.image = self.image.url
         form.instance.author = self.request.user
         form.save()
         return super().form_valid(form)
@@ -131,11 +128,3 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About DevLog'})
-
-# check tomorrow
-# def form_valid(self, form):
-#     comment = form.save(commit=False)
-#     comment.author = self.request.user
-#     comment.post = self.object
-#     comment.save()
-#     return super().form_valid(form)
