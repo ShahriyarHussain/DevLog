@@ -7,3 +7,4 @@ blog/__pycache__/
 
 .vscode/
 check.sh
+.venv
