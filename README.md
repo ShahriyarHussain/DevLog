@@ -2,6 +2,10 @@
 
 A simple blog with basic functionalities like posting texts with images, post tags, rich text formatting and also commenting to posts.
 
+## PLEASE SWITCH TO REBUILD BRANCH FOR LOCAL DEVELOPMENT
+**It will be merged with master and rename to main in an upcoming commit**
+
+
 ## Development
 The project doesn't include any complex or sophisticated framework. It is built with the fundamental features of the Django framework and basic HTML, CSS. Following are steps to download the project on your machine and start developing.
 
