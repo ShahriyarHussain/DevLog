@@ -3,7 +3,7 @@
 A simple blog with basic functionalities like posting texts with images, post tags, rich text formatting and also commenting to posts.
 
 ## PLEASE SWITCH TO REBUILD BRANCH FOR LOCAL DEVELOPMENT
-**It will be merged with master and renamed to main in an upcoming commit**
+**The master branch is currently deprecated. It will be merged with rebuild and renamed to main in an upcoming commit**
 
 
 ## Development
