@@ -9,8 +9,6 @@ A simple blog with basic functionalities like posting texts with images, post ta
 ## Development
 The project doesn't include any complex or sophisticated framework. It is built with the fundamental features of the Django framework and basic HTML, CSS. Following are steps to download the project on your machine and start developing.
 
-***N.B.: It is recommended to fork the project and `git clone` it to your machine for additional development. It will later help us if you wish to merge you developments with pull requests.***
-
 ### Pre-requisites
 
 This project requires at least `python 3.6` or above. `pip` should also installed which will be used to install required python packages. To check python version type following in terminal/CLI:
