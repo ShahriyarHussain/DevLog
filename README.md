@@ -1,3 +1,7 @@
+# Rennovation :D
+
+I am making a new version of DevLog. This repo will be archived and the DevLog site will be out of operation. Thank you.
+
 # DevLog - A blog for Devs
 
 A simple blog with basic functionalities like posting texts with images, post tags, rich text formatting and also commenting to posts.
